@@ -1,0 +1,29 @@
+Router> enable
+Router# configure terminal
+Router(config)# hostname Router1
+Router(config)# interface fa0/0
+Router(config-if)# ip address 10.1.50.21 255.255.0.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+Router(config)# interface fa0/1
+Router(config-if)# ip address 10.4.5.6 255.255.0.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+Router(config)# ip route 10.1.0.0 255.255.0.0 10.1.50.21
+Router(config)# ip route 10.2.0.0 255.255.0.0 10.4.5.6
+Router(config)# ip route 10.3.0.0 255.255.0.0 10.4.5.6
+Router(config)# end
+SW
+Switch> enable
+Switch# configure terminal
+Switch(config)# hostname Sw1
+Switch(config)# interface fa0/1
+Switch(config-if)# no shutdown
+Switch(config-if)# exit
+Switch(config)# interface range fa0/6, fa0/7, fa0/11, fa0/12
+Switch(config-if)# no shutdown
+Switch(config-if)# end
+DI SERVERR
+Server0 ☁️IP Address : 10.1.1.1
+Subnet Mask : 255.255.0.0
+Default Gateway: 10.4.5.6
